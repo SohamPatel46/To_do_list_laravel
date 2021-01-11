@@ -10,4 +10,8 @@ class Todo extends Model
     use HasFactory;
     protected $fillable = ['title'];  //to make it complusary for entering data and neglacting other field
     
+    // public function getRouteKeyName()
+    //{
+    //  return 'title',          it will pass title instead of id, Dynamic Model routing
+    //}
 }

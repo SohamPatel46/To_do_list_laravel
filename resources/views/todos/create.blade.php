@@ -9,5 +9,8 @@
             <input type="submit" value="Create">
         </form>
 
+        <a href="/todos/" style="border:solid; text-decoration:none;
+     color:black; padding:2px;">back</a>
+
         <x-alert/>
 @endsection

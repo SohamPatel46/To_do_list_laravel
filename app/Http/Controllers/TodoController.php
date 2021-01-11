@@ -21,10 +21,20 @@ class TodoController extends Controller
     {
         return view('todos.create');
     }
-    public function edit()
+
+    public function edit(Todo $id)            //todo $id will have whole data of that id passed
     {
-        return view('todos.edit');
+        //dd($id->title);
+        return view('todos.edit')->with(['data'=>$id]);
     }
+    
+    public function update(TodoCreateRequest $request,Todo $id)
+    {
+        //dd($request->all());
+        $id->update(['title'=> $request->title]);
+        return redirect(route('todo.index'))->with('message',"updated -> ".$request->title);
+    }
+
     public function store(TodoCreateRequest $request)
     {
         //validator is at -> /app/http/requests/TodoCreateRequest        
@@ -32,4 +42,5 @@ class TodoController extends Controller
         Todo::create($request->all());
         return redirect()->back()->with('message','To-Do created');
     }
+
 }
