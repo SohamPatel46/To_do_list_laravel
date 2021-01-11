@@ -12,7 +12,9 @@ class TodoController extends Controller
 {
     public function index()
     {
-        return view('todos.index');
+        //get data and pass to index
+        $todos = Todo::all();
+        return view('todos.index')->with(['data'=>$todos]);
     }
 
     public function create()
