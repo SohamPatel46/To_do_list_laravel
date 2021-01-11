@@ -13,7 +13,7 @@ class TodoController extends Controller
     public function index()
     {
         //get data and pass to index
-        $todos = Todo::all();
+        $todos = Todo::orderBy('completed')->get();
         return view('todos.index')->with(['data'=>$todos]);
     }
 
@@ -33,6 +33,27 @@ class TodoController extends Controller
         //dd($request->all());
         $id->update(['title'=> $request->title]);
         return redirect(route('todo.index'))->with('message',"updated -> ".$request->title);
+    }
+
+    public function complete(Todo $id)
+    {
+        //dd($request->all());
+        $id->update(['completed'=>true]);     //update is mass assigment hence 'completed' shoud be fillable
+        return redirect(route('todo.index'))->with('message',"Task completed ");
+    }
+
+    public function incomplete(Todo $id)
+    {
+        //dd($request->all());
+        $id->update(['completed'=>false]);     //update is mass assigment hence 'completed' shoud be fillable
+        return redirect(route('todo.index'))->with('message',"Task Reversed ");
+    }
+    
+    public function delete(Todo $id)
+    {
+        //dd($request->all());
+        $id->delete();
+        return redirect(route('todo.index'))->with('message',"Task Deleted ");
     }
 
     public function store(TodoCreateRequest $request)

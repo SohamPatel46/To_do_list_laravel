@@ -23,6 +23,11 @@ Route::get('/todos',[TodoController::class,'index'])->name('todo.index');
 Route::get('/todos/create',[TodoController::class,'create']);
 Route::post('/todos/create', [TodoController::class,'store']);
 Route::patch('/todos/{id}/update', [TodoController::class,'update'])->name('todo.update');
+Route::put('/todos/{id}/complete', [TodoController::class,'complete'])->name('todo.complete');
+Route::put('/todos/{id}/incomplete', [TodoController::class,'incomplete'])->name('todo.incomplete');
+Route::delete('/todos/{id}/delete', [TodoController::class,'delete'])->name('todo.delete');
+
+
 
 Route::get('/todos/{id}/edit',[TodoController::class,'edit']);
 
