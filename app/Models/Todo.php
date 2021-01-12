@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Todo extends Model
 {
     use HasFactory;
-    protected $fillable = ['title','completed'];  //to make it complusary for entering data and neglacting other field
+    protected $fillable = ['title','completed','user_id'];  //to make it complusary for entering data and neglacting other field
     
     // public function getRouteKeyName()
     //{

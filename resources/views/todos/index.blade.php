@@ -9,7 +9,8 @@
 
 <div>
     <ul style=" list-style-type: none;">
-        @foreach($data as $todo) 
+    
+        @forelse($data as $todo) 
             <li style="padding:5px;">
 
                 <p>                    
@@ -36,7 +37,9 @@
 
                 </p>                
             </li>
-        @endforeach
+            @empty
+                            <p>No tasks created</p>
+        @endforelse
     </ul>
     <x-alert/>
 </div>

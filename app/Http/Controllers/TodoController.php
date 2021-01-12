@@ -19,7 +19,10 @@ class TodoController extends Controller
     public function index()
     {
         //get data and pass to index
-        $todos = Todo::orderBy('completed')->get();
+
+        //$todos = Todo::orderBy('completed')->get();        orderBy->sql  sortby->collection
+            
+        $todos= auth()->user()->todos->sortBy('completed');
         return view('todos.index')->with(['data'=>$todos]);
     }
 
@@ -64,9 +67,12 @@ class TodoController extends Controller
 
     public function store(TodoCreateRequest $request)
     {
-        //validator is at -> /app/http/requests/TodoCreateRequest        
+        //validator is at -> /app/http/requests/TodoCreateRequest  
 
-        Todo::create($request->all());
+        //Todo::create($request->all());
+
+        //getting dataa with relationship      todo()->gives whole model    todos->give data as collections        
+        auth()->user()->todos()->create($request->all());
         return redirect()->back()->with('message','To-Do created');
     }
 

@@ -40,4 +40,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function todos()
+    {
+        return $this->hasMany(Todo::class);
+        //we need one foreign key for todo table -> user_id(by default table colum)
+        //return $this->hasMany(Todo::class,'creator_id');  -> for custom table colum
+    }
 }
