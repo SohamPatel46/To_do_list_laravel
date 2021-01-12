@@ -10,6 +10,12 @@ use App\Models\Todo;
 
 class TodoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
     public function index()
     {
         //get data and pass to index
